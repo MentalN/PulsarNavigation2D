@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 
 class Bounds:
-    lo = -10
-    hi = 10
+    lo = -1000
+    hi = 1000
 
     def set_bounds(self, low, high):
         self.lo = low
@@ -29,14 +29,12 @@ class Pulsar(Bounds):
     y_c = 0
     T = 100
 
-    def set_coordinates(self, xi, yi):
+    def __init__(self, xi, yi, T_o):
         self.x_c = xi
         self.y_c = yi
-
-    def set_period(self, T_o):
         self.T = T_o
 
-    def spin(self, t=10000):
+    def spin(self, t):
         plt.ion()
         for i in range(t):
             func = lambda x: (x - self.x_c)*math.tan(2 * np.pi * i / self.T) + self.y_c
@@ -51,4 +49,3 @@ class Pulsar(Bounds):
             plt.pause(0.00005)
 
 
-Pulsar.spin(Pulsar())
